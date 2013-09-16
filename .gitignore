@@ -1,0 +1,9 @@
+bin/
+include/
+*.swp
+*.pyc
+lib/
+local/
+man/
+out
+test/
