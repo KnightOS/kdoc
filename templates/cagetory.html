@@ -1,0 +1,10 @@
+---
+title: {{ name }}
+layout: documentation
+---
+
+<h1>{{ name }}</h1>
+
+{% for item in items %}
+    {% include "item.html" %}
+{% endfor %}

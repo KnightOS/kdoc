@@ -1,0 +1,6 @@
+<h2><a href="#{{ url_name }}"></a>{{ name }}</h2>
+{{ summary }}
+{% for section in sections %}
+    <h3>{{ section.name}}</h3>
+    {{ section.text | markdown }}
+{% endfor %}
