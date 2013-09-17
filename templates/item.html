@@ -2,5 +2,14 @@
 {{ summary }}
 {% for section in sections %}
     <h3>{{ section.name}}</h3>
-    {{ section.text | markdown }}
+    {% if section.isListItem %}
+        <dl>
+            {% for item in section.items %}
+                <dt>{{ item.name }}</dt>
+                <dd>{{ item.text | markdown }}</dd>
+            {% endfor %}
+        </dl>
+    {% else %}
+        {{ section.text | markdown }}
+    {% endif %}
 {% endfor %}
