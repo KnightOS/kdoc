@@ -2,7 +2,7 @@
 {{ summary }}
 {% for section in sections %}
     <h3>{{ section.name}}</h3>
-    {% if section.isListItem %}
+    {% if section.isDetailedItem %}
         <dl>
             {% for item in section.items %}
                 <dt>{{ item.name }}</dt>
