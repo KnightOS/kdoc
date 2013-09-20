@@ -11,6 +11,8 @@ from markdown import markdown
 p = Processor()
 link_re = re.compile('\[\[\w+\]\]')
 
+category_filename = lambda category: category.lower().replace(" ", "_") + ".html"
+
 def safe_markdown(text):
     return Markup(markdown(text))
 
@@ -24,8 +26,7 @@ def safe_links(text):
             continue
 
         category = p.lookup_table[func_name]
-        print category, func_name
-        new_text = new_text.replace(match, Markup('<a href="%s.html#%s">%s</a>' % (category, func_name, func_name)))
+        new_text = new_text.replace(match, Markup('<a href="%s#%s">%s</a>' % (category_filename(category), func_name, func_name)))
 
     return new_text
 
@@ -56,8 +57,7 @@ if __name__ == '__main__':
     for category, items in p.category_table.items():
         content = template.render(name=category, items=items)
 
-        filename = "%s.html" % category.lower().replace(' ', '_')
-        with open(os.path.join("html", filename), "w") as f:
+        with open(os.path.join("html", category_filename(category)), "w") as f:
             f.write(content)
             f.flush()
 
