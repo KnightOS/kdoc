@@ -11,6 +11,7 @@ class ASMScanner(Scanner):
 
     functions = []
     lookup_table = {}
+    category_table = {}
 
     def current_level(self):
         return self.indentation_stack[-1]
@@ -60,8 +61,13 @@ class ASMScanner(Scanner):
 
     def eof(self):
         if self.f.name:
+            self.f.finish()
             self.functions.append(self.f)
-            self.lookup_table[self.f] = self.f.category
+            self.lookup_table[self.f.name] = self.f.category
+            if self.f.category not in self.category_table:
+                self.category_table[self.f.category] = [self.f]
+            else:
+                self.category_table[self.f.category].append(self.f)
 
         self.current_section = None
         self.f = Function()
@@ -73,7 +79,7 @@ class ASMScanner(Scanner):
     # Actual parsing
     
     def function_name(self, text):
-        self.f.name = text
+        self.f.name = text.strip()
 
     def category_name(self, text):
         self.f.category = text

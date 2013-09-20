@@ -6,3 +6,9 @@ class Function(object):
 
     def __repr__(self):
         return self.name
+
+    def finish(self):
+        self.description = ' '.join(self.description)
+        for section, v in self.sections.items():
+            if section not in ['Inputs', 'Outputs']:
+                self.sections[section] = ' '.join(v)
