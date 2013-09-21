@@ -55,7 +55,7 @@ if __name__ == '__main__':
     except: pass
 
     for category, items in p.category_table.items():
-        content = template.render(name=category, items=items)
+        content = template.render(name=category, items=sorted(items, key=lambda item: item.name))
 
         with open(os.path.join("html", category_filename(category)), "w") as f:
             f.write(content)
