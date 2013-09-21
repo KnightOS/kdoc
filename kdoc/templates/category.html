@@ -13,7 +13,7 @@ layout: documentation
                 <a href="#{{ item.name }}">{{ item.name }}</a>
             </h2>
             
-            {{ item.description | links }}
+            {{ item.description | markdown | links }}
             {% for name, content in item.sections.items() %}
                 <h3>{{ name }}</h3>
                 {% if name in ['Inputs', 'Outputs'] %}
