@@ -1,27 +1,33 @@
 ---
-title: {{ name }}
+title: {{ name }} Documentation
 layout: documentation
 ---
 
 <h1>{{ name }}</h1>
 
-{% for item in items %}
-    <h2 id="{{ item.name }}">
-        <a href="#{{ item.name }}">{{ item.name }}</a>
-    </h2>
-    
-    {{ item.description | links }}
-    {% for name, content in item.sections.items() %}
-        <h3>{{ name }}</h3>
-        {% if name in ['Inputs', 'Outputs'] %}
-            <dl>
-                {% for name, content in content.items() %}
-                <dt>{{ name }}</dt>
-                <dd>{{ content | markdown | links }}</dt>
-                {% endfor %}
-            </dl>
-        {% else %}
-            {{ content | markdown | links }}
-        {% endif %}
+<div class="docs">
+    {% for item in items %}
+    <div id="{{ item.name }}" class="docsection">
+        <div>
+            <h2>
+                <a href="#{{ item.name }}">{{ item.name }}</a>
+            </h2>
+            
+            {{ item.description | links }}
+            {% for name, content in item.sections.items() %}
+                <h3>{{ name }}</h3>
+                {% if name in ['Inputs', 'Outputs'] %}
+                    <dl>
+                        {% for name, content in content.items() %}
+                        <dt>{{ name }}</dt>
+                        <dd>{{ content | markdown | links }}</dt>
+                        {% endfor %}
+                    </dl>
+                {% else %}
+                    {{ content | markdown | links }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
     {% endfor %}
-{% endfor %}
+</div>
