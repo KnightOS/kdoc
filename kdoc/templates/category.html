@@ -3,31 +3,50 @@ title: {{ name }} Documentation
 layout: documentation
 ---
 
-<h1>{{ name }}</h1>
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ name }}</h1>
+        <div class="docs">
+            {% for item in items %}
+            <div id="{{ item.name }}" class="docsection">
+                <div>
+                    <h2>
+                        <a href="#{{ item.name }}">{{ item.name }}</a>
+                    </h2>
+                    
+                    {{ item.description | markdown | links }}
 
-<div class="docs">
-    {% for item in items %}
-    <div id="{{ item.name }}" class="docsection">
-        <div>
-            <h2>
-                <a href="#{{ item.name }}">{{ item.name }}</a>
-            </h2>
-            
-            {{ item.description | markdown | links }}
-            {% for name, content in item.sections.items() %}
-                <h3>{{ name }}</h3>
-                {% if name in ['Inputs', 'Outputs'] %}
-                    <dl>
-                        {% for name, content in content.items() %}
-                        <dt>{{ name }}</dt>
-                        <dd>{{ content | markdown | links }}</dt>
-                        {% endfor %}
-                    </dl>
-                {% else %}
-                    {{ content | markdown | links }}
-                {% endif %}
+                    <div class="details">
+                    {% for name, content in item.sections.items() %}
+                        <h3>{{ name }}</h3>
+                        {% if name in ['Inputs', 'Outputs'] %}
+                            <dl>
+                                {% for name, content in content.items() %}
+                                <dt>{{ name }}</dt>
+                                <dd>{{ content | markdown | links }}</dt>
+                                {% endfor %}
+                            </dl>
+                        {% else %}
+                            {{ content | markdown | links }}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
             {% endfor %}
         </div>
     </div>
-    {% endfor %}
+    <div class="col-md-4">
+        <h2>{{ name }} Functions</h2>
+        <ul class="nav">
+            {% for item in items %}
+            <li>
+                <a href="#{{ item.name }}">{{ item.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+{#<script type="text/javascript">
+window.documentation = JSON.parse('{{ docs | json }}');
+</script>#}

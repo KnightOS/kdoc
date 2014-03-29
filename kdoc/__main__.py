@@ -4,6 +4,7 @@ import sys
 import pprint
 import os
 import re
+import json
 
 from jinja2 import Template, Environment, PackageLoader, Markup
 from markdown import markdown
@@ -33,6 +34,7 @@ def safe_links(text):
 env = Environment(loader=PackageLoader("kdoc", "templates"))
 env.filters['markdown'] = safe_markdown
 env.filters['links'] = safe_links
+env.filters['json'] = json.dumps
 
 if __name__ == '__main__':
     for f in sys.argv[1:]:
@@ -55,7 +57,7 @@ if __name__ == '__main__':
     except: pass
 
     for category, items in p.category_table.items():
-        content = template.render(name=category, items=sorted(items, key=lambda item: item.name))
+        content = template.render(name=category, items=sorted(items, key=lambda item: item.name), docs=p.category_table)
 
         with open(os.path.join("html", category_filename(category)), "w") as f:
             f.write(content)
