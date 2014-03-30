@@ -65,7 +65,8 @@ if __name__ == '__main__':
         kw = {
             'name': category,
             'items': sorted(items, key=lambda item: item.name),
-            'docs': p.category_table
+            'docs': p.category_table,
+            'categories': sorted(categories.items())
         }
 
         if category in categories:

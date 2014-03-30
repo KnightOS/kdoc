@@ -27,7 +27,7 @@ layout: documentation
                             <dl>
                                 {% for name, content in content.items() %}
                                 <dt>{{ name }}</dt>
-                                <dd>{{ content | markdown | links }}</dt>
+                                <dd>{{ content | markdown | links }}</dd>
                                 {% endfor %}
                             </dl>
                         {% else %}
@@ -41,16 +41,26 @@ layout: documentation
         </div>
     </div>
     <div class="col-md-4">
-        <div data-spy="affix">
-            <h2>{{ name }} Functions</h2>
-            <ul class="nav doc-nav" data-offset-top="60" data-offset-bottom="200">
-                {% for item in items %}
-                <li>
-                    <a href="#{{ item.name }}">{{ item.name }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+        <h4>Function Reference</h4>
+        <ul class="nav doc-nav">
+            {% for c in categories %}
+            {% if c[0] == name %}
+            <li class="active">
+                <a href="/documentation/reference/{{ c[0] | lower }}.html" class="text-bold">{{ c[0] }}</a>
+                <ul class="nav doc-nav">
+                    {% for item in items %}
+                    <li>
+                        <a href="#{{ item.name }}" class="text-muted">{{ item.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% else %}
+            <li><a href="/documentation/reference/{{ c[0] | lower }}.html">{{ c[0] }}</a></li>
+            {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 <script type="text/javascript">
