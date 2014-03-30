@@ -11,10 +11,10 @@ class Function(object):
         return self.name
 
     def finish(self):
-        self.description = ' '.join(self.description)
+        self.description = '\n'.join(self.description)
         for section, v in self.sections.items():
             if section not in ['Inputs', 'Outputs']:
-                self.sections[section] = ' '.join(v)
+                self.sections[section] = '\n'.join(v)
 
     def flatten(self):
         return {
