@@ -38,6 +38,9 @@ class ASMScanner(Scanner):
 
         #if current_level == 1 and new_level == 0:
 
+        if new_level == 0 and current_level == 2:
+            self.section_text("\n")
+
         if new_level == 1:
             if not self.f.name:
                 self.begin("name")
