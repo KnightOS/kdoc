@@ -39,6 +39,8 @@ env.filters['json'] = json.dumps
 
 if __name__ == '__main__':
     categories = sys.argv[1]
+    with open(categories) as f:
+        categories = yaml.load(f.read())['categories']
 
     for f in sys.argv[2:]:
         p.add(f)
@@ -60,7 +62,17 @@ if __name__ == '__main__':
     except: pass
 
     for category, items in p.category_table.items():
-        content = template.render(name=category, items=sorted(items, key=lambda item: item.name), docs=p.category_table)
+        kw = {
+            'name': category,
+            'items': sorted(items, key=lambda item: item.name),
+            'docs': p.category_table
+        }
+
+        category_info = categories[category]
+        if category_info and 'summary' in category_info:
+            kw['summary'] = category_info['summary']
+
+        content = template.render(**kw)
 
         with open(os.path.join("html", category_filename(category)), "w") as f:
             f.write(content)
@@ -72,11 +84,9 @@ if __name__ == '__main__':
         f.write(json.dumps(p.flatten()))
         f.flush()
 
-    with open(categories) as c:
-        with open(os.path.join("html", "categories.html"), "w") as f:
-            categories_obj = yaml.load(c.read())['categories']
-            template = env.get_template("categories.html")
-            content = template.render(categories=categories_obj)
+    with open(os.path.join("html", "index.md"), "w") as f:
+        template = env.get_template("categories.html")
+        content = template.render(categories=categories)
 
-            f.write(content)
-            f.flush()
+        f.write(content)
+        f.flush()
