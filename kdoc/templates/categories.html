@@ -22,9 +22,9 @@ the kernel).
 
 {% for name, data in categories.items() %}
 {% if data and 'stub' in data %}
-* [{{name}}](/documentation/reference/{{name}}.html): {{ data['stub'] }}
+* [{{name}}](/documentation/reference/{{name | lower}}.html): {{ data['stub'] }}
 {% else %}
-* [{{name}}](/documentation/reference/{{name}}.html)
+* [{{name}}](/documentation/reference/{{name | lower}}.html)
 {% endif %}
 {% endfor %}
 
