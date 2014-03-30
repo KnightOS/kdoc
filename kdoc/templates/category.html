@@ -21,7 +21,8 @@ layout: documentation
                     {{ item.description | markdown | links }}
 
                     <div class="details">
-                    {% for name, content in item.sections.items() %}
+                    {% for name in item.sections_order %}
+                    {% set content = item.sections[name] %}
                         <h3>{{ name }}</h3>
                         {% if name in ['Inputs', 'Outputs'] %}
                             <dl>

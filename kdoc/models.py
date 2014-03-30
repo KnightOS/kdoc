@@ -3,6 +3,7 @@ class Function(object):
         self.name = None
         self.description = []
         self.sections = {}
+        self.sections_order = []
 
     def __repr__(self):
         return self.name

@@ -22,7 +22,7 @@ class ASMScanner(Scanner):
         return 'newline'
 
     def indent(self, text):
-        current_level = self.current_level() 
+        current_level = self.current_level()
         new_level = len(text) - 2 # len(";;") == 2
 
         if new_level > current_level:
@@ -44,11 +44,11 @@ class ASMScanner(Scanner):
             if not self.current_section:
                 self.begin("description")
             else:
-                if self.current_section in ENUMERATED_SECTIONS: 
+                if self.current_section in ENUMERATED_SECTIONS:
                     self.begin('field_name')
                 else:
                     self.begin("section_text")
-            
+
 
     def indent_to(self, new_level):
         self.indentation_stack.append(new_level)
@@ -77,7 +77,7 @@ class ASMScanner(Scanner):
         self.eof()
 
     # Actual parsing
-    
+
     def function_name(self, text):
         self.f.name = text.strip()
 
@@ -86,6 +86,7 @@ class ASMScanner(Scanner):
 
     def section_name(self, text):
         self.current_section = text
+        self.f.sections_order.append(text)
         self.f.sections[text] = [] if text not in ENUMERATED_SECTIONS else {}
 
     def description_line(self, text):
@@ -141,7 +142,7 @@ class ASMScanner(Scanner):
     ])
 
     def process(self):
-        t = self.read() 
+        t = self.read()
         while t[0] != None:
             t = self.read()
 
