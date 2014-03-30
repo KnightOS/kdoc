@@ -52,7 +52,7 @@ class ASMScanner(Scanner):
                     self.begin('field_name')
                 else:
                     self.begin("section_text")
-
+                    self.section_text("\n")
 
     def indent_to(self, new_level):
         self.indentation_stack.append(new_level)
