@@ -14,8 +14,9 @@ layout: documentation
             {% for item in items %}
             <div id="{{ item.name }}" class="docsection">
                 <div>
-                    <h2>
+                    <h2 class="doc-title">
                         <a href="#{{ item.name }}">{{ item.name }}</a>
+                        <small><a href="#jdiez-fill-this-in">View Source</a></small>
                     </h2>
                     
                     {{ item.description | markdown | links }}
