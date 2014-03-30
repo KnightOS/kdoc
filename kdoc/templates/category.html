@@ -37,16 +37,18 @@ layout: documentation
         </div>
     </div>
     <div class="col-md-4">
-        <h2>{{ name }} Functions</h2>
-        <ul class="nav">
-            {% for item in items %}
-            <li>
-                <a href="#{{ item.name }}">{{ item.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <div data-spy="affix">
+            <h2>{{ name }} Functions</h2>
+            <ul class="nav doc-nav" data-offset-top="60" data-offset-bottom="200">
+                {% for item in items %}
+                <li>
+                    <a href="#{{ item.name }}">{{ item.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
-{#<script type="text/javascript">
-window.documentation = JSON.parse('{{ docs | json }}');
-</script>#}
+<script type="text/javascript">
+{#window.documentation = JSON.parse('{{ docs | json }}');#}
+</script>
