@@ -17,7 +17,7 @@ categories:
             We refer to monochrome mode as "legacy mode", and color mode as "color mode". Your program should tell the kernel
             which mode you'd like to use, and the kernel will handle the switching semantics to help you coorperate with the rest
             of the enviornment.
-    Crypto:
+    Cryptography:
         stub: Cryptographic hashing functions
         summary: 
             KnightOS offers minimal cryptographic support, including SHA-1, MD5, and CRC. CRC and MD5 are suitable for data
@@ -31,7 +31,7 @@ categories:
             to copy this buffer to the display.
 
             This page documents monochrome functions. For the color display, see [color](/documentation/reference/color).
-    File Stream:
+    Filestreams:
         stub: File stream manipulation
         summary: 
             File streams allow you to read from or write to files on the filesystem. It operates at a higher level than the
