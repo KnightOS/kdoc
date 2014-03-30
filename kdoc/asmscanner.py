@@ -84,6 +84,7 @@ class ASMScanner(Scanner):
     def function_name(self, text):
         self.f.name = text.strip()
         self.f.line = self.line + 1
+        self.f.path = self.path
 
     def category_name(self, text):
         self.f.category = text
@@ -153,6 +154,7 @@ class ASMScanner(Scanner):
     def __init__(self, file):
         Scanner.__init__(self, self.lexicon, file)
         self.f = Function()
+        self.path = file.name
         self.functions = []
         self.lookup_table = {}
         self.indentation_stack = [0]

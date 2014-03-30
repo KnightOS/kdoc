@@ -5,6 +5,7 @@ class Function(object):
         self.sections = {}
         self.sections_order = []
         self.line = 0
+        self.path = None
 
     def __repr__(self):
         return self.name
@@ -20,5 +21,6 @@ class Function(object):
             'name': self.name,
             'description': self.description,
             'sections': self.sections,
-            'line': self.line
+            'line': self.line,
+            'path': self.path
         }
