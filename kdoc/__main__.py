@@ -9,6 +9,7 @@ import yaml
 
 from jinja2 import Template, Environment, PackageLoader, Markup
 from markdown import markdown
+from functools import partial
 
 p = Processor()
 link_re = re.compile('\[\[\w+\]\]')
@@ -32,17 +33,30 @@ def safe_links(text):
 
     return new_text
 
+def github_link(user, commit, path, line):
+    repo = path.split("/")[0]
+    path = '/'.join(path.split("/")[1:])
+
+    return "https://github.com/%s/%s/blob/%s/%s#L%d" % (user, repo, commit, path, line)
+
+# TODO: Refactor this
+kos_github_link = partial(github_link, "KnightOS")
+
 env = Environment(loader=PackageLoader("kdoc", "templates"))
 env.filters['markdown'] = safe_markdown
 env.filters['links'] = safe_links
 env.filters['json'] = json.dumps
+
+env.globals['kos_github_link'] = kos_github_link
 
 if __name__ == '__main__':
     categories = sys.argv[1]
     with open(categories) as f:
         categories = yaml.load(f.read())['categories']
 
-    for f in sys.argv[2:]:
+    commit = sys.argv[2]
+
+    for f in sys.argv[3:]:
         p.add(f)
 
     p.process()
@@ -65,8 +79,8 @@ if __name__ == '__main__':
         kw = {
             'name': category,
             'items': sorted(items, key=lambda item: item.name),
-            'docs': p.category_table,
-            'categories': sorted(categories.items())
+            'categories': sorted(categories.items()),
+            'commit': commit,
         }
 
         if category in categories:
