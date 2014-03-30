@@ -1,7 +1,7 @@
 categories:
     Color:
         stub: Color graphics and display driver
-        summary: -->
+        summary: 
             KnightOS supports the TI-84+ Color Silver Edition. This calculator uses a
             [ILI9335 display](http://www.displayfuture.com/Display/datasheet/controller/ILI9335.pdf), which has a resolution of
             320x240. KnightOS uses 16-bit colors, in the format 0bRRRRRGGGGGGBBBBB.
@@ -19,31 +19,31 @@ categories:
             of the enviornment.
     Cryptography:
         stub: Cryptographic hashing functions
-        summary: -->
+        summary: 
             KnightOS offers minimal cryptographic support, including SHA-1, MD5, and CRC. CRC and MD5 are suitable for data
             validation, and SHA-1 is suitable for cryptographic hashing. This statement is true in 2014, but may not hold up
             long after this document is written. Always research the latest news in cryptography before settling on an algorithm.
     Display:
         stub: Monochrome graphics and display driver
-        summary: -->
+        summary: 
             The monochrome display is 96x64 pixels. KnightOS programs are expected to allocate a 768-byte buffer of memory, and
-            place the address in IY ([allocScreenBuffer](#allocScreenBuffer) does this for you). You may use [fastCopy](#fastCopy)
+            place the address in IY [[allocScreenBuffer]] does this for you). You may use [fastCopy](#fastCopy)
             to copy this buffer to the display.
 
             This page documents monochrome functions. For the color display, see [color](/documentation/reference/color).
     Filestreams:
         stub: File stream manipulation
-        summary: -->
+        summary: 
             File streams allow you to read from or write to files on the filesystem. It operates at a higher level than the
             [filesystem driver](/documentation/reference/filesystem.html) does.
     Filesystem:
         stub: Low-level filesystem driver
-        summary: -->
+        summary: 
             These functions are part of the low-level filesystem driver, and interact directly with the filesystem tree. To read
             or write files, see the [filestream reference](/documentation/reference/filestreams.html).
     Flash:
         stub: Low-level Flash storage driver
-        summary: -->
+        summary: 
             Manipulating Flash can be dangerous and lead to severe data loss. Please only use these functions if you feel qualified
             that you can safely work with them. Nearly all of them require Flash to be unlocked first, via [unlockFlash](#unlockFlash).
     Hardware:
@@ -59,7 +59,7 @@ categories:
         stub: Text graphics
     Threading:
         stub: Thread creation and management
-        summary: -->
+        summary: 
             The default kernel configuration allows for up to 32 threads to be running simultaneously. It is possible to change this
             number by reconfiguring your kernel, and userspace programs should not depend on this number to be accurate.
     Time:

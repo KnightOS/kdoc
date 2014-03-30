@@ -5,6 +5,7 @@ import pprint
 import os
 import re
 import json
+import yaml
 
 from jinja2 import Template, Environment, PackageLoader, Markup
 from markdown import markdown
@@ -37,7 +38,9 @@ env.filters['links'] = safe_links
 env.filters['json'] = json.dumps
 
 if __name__ == '__main__':
-    for f in sys.argv[1:]:
+    categories = sys.argv[1]
+
+    for f in sys.argv[2:]:
         p.add(f)
 
     p.process()
@@ -68,3 +71,12 @@ if __name__ == '__main__':
     with open(os.path.join("html", "data.json"), "w") as f:
         f.write(json.dumps(p.flatten()))
         f.flush()
+
+    with open(categories) as c:
+        with open(os.path.join("html", "categories.html"), "w") as f:
+            categories_obj = yaml.load(c.read())['categories']
+            template = env.get_template("categories.html")
+            content = template.render(categories=categories_obj)
+
+            f.write(content)
+            f.flush()

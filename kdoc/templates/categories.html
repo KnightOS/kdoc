@@ -1,0 +1,9 @@
+{% for name, data in categories.items() %}
+    {{ name }}
+    {% if data and 'stub' in data %}
+    Stub: {{ data['stub'] | markdown | links}}
+    {% endif %}
+    {% if data and 'summary' in data %}
+    Summary: {{ data['summary'] | markdown | links}}
+    {% endif %}
+{% endfor %}
