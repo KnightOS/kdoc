@@ -1,4 +1,4 @@
-from .processor import Processor
+from kdoc.processor import Processor
 
 import sys
 import pprint
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     else:
         sys.exit(0)
 
-    template = env.get_template("category.html") 
+    template = env.get_template("category.html")
 
     try:
         os.mkdir("html")
@@ -64,3 +64,7 @@ if __name__ == '__main__':
             f.flush()
 
         print category, "written"
+
+    with open(os.path.join("html", "data.json"), "w") as f:
+        f.write(json.dumps(p.flatten()))
+        f.flush()

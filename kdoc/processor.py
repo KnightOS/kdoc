@@ -1,4 +1,4 @@
-from .asmscanner import ASMScanner
+from kdoc.asmscanner import ASMScanner
 
 class Processor(object):
     files = []
@@ -18,3 +18,9 @@ class Processor(object):
             self.functions.extend(s.functions)
             self.lookup_table.update(s.lookup_table)
             self.category_table.update(s.category_table)
+
+    def flatten(self):
+        return dict([
+            (name, {f.name: f.flatten() for f in function_list})
+            for name, function_list in self.category_table.items()
+        ])

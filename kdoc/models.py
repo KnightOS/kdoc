@@ -1,7 +1,7 @@
 class Function(object):
     def __init__(self):
         self.name = None
-        self.description = [] 
+        self.description = []
         self.sections = {}
 
     def __repr__(self):
@@ -12,3 +12,10 @@ class Function(object):
         for section, v in self.sections.items():
             if section not in ['Inputs', 'Outputs']:
                 self.sections[section] = ' '.join(v)
+
+    def flatten(self):
+        return {
+            'name': self.name,
+            'description': self.description,
+            'sections': self.sections
+        }
