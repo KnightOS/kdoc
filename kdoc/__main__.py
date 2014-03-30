@@ -68,9 +68,10 @@ if __name__ == '__main__':
             'docs': p.category_table
         }
 
-        category_info = categories[category]
-        if category_info and 'summary' in category_info:
-            kw['summary'] = category_info['summary']
+        if category in categories:
+            category_info = categories[category]
+            if category_info and 'summary' in category_info:
+                kw['summary'] = category_info['summary']
 
         content = template.render(**kw)
 
