@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     with open(os.path.join("html", "index.md"), "w") as f:
         template = env.get_template("categories.html")
-        content = template.render(categories=categories)
+        content = template.render(categories=sorted(categories.items()))
 
         f.write(content)
         f.flush()

@@ -20,7 +20,7 @@ on any KnightOS-based operating system. It is generated from comments in the ker
 You'll need to include kernel.inc to use these in your programs (this file is generated when compiling
 the kernel).
 
-{% for name, data in categories.items() %}
+{% for name, data in categories %}
 {% if data and 'stub' in data %}
 * [{{name}}](/documentation/reference/{{name | lower}}.html): {{ data['stub'] }}
 {% else %}
