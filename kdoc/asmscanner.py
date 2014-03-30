@@ -13,11 +13,14 @@ class ASMScanner(Scanner):
     lookup_table = {}
     category_table = {}
 
+    line = 0
+
     def current_level(self):
         return self.indentation_stack[-1]
 
     def newline(self, text):
         self.begin('code')
+        self.line += 1
 
         return 'newline'
 
@@ -80,6 +83,7 @@ class ASMScanner(Scanner):
 
     def function_name(self, text):
         self.f.name = text.strip()
+        self.f.line = self.line + 1
 
     def category_name(self, text):
         self.f.category = text
@@ -106,7 +110,7 @@ class ASMScanner(Scanner):
     lexicon = Lexicon([
         State('code', [
             (Str(";;") + Rep(Str(" ")), indent),
-            (Str("\n"), IGNORE),
+            (Str("\n"), newline),
             (AnyBut(";"), doc_end),
             (AnyChar, TEXT)
         ]),
