@@ -12,4 +12,4 @@ This tool generates documentation for assembly projects. Write your code like th
     ;; Outputs:
     ;;  Register: description
 
-And then run `python -m kdoc file1.asm file2.asm ...` to get docs in html/.
+And then run `python -m kdoc categories.yaml $(find kernel/src -type f)` to get docs in html/.
