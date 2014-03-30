@@ -16,11 +16,10 @@ layout: documentation
                 <div>
                     <h2 class="doc-title">
                         <a href="#{{ item.name }}">{{ item.name }}</a>
-                        <small><a href="#jdiez-fill-this-in">View Source</a></small>
+                        <small><a target="_blank" href="{{ kos_github_link(commit, item.path, item.line) }}">View Source</a></small>
                     </h2>
                     
                     {{ item.description | markdown | links }}
-                    GitHub link: {{ kos_github_link(commit, item.path, item.line) }}
 
                     <div class="details">
                     {% for name in item.sections_order %}
