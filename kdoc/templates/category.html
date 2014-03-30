@@ -4,7 +4,7 @@ layout: documentation
 ---
 
 {% if summary %}
-Summary: {{ summary }}
+{{ summary | markdown | links }}
 {% endif %}
 
 <div class="row">
