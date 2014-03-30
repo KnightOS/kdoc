@@ -72,6 +72,8 @@ if __name__ == '__main__':
             category_info = categories[category]
             if category_info and 'summary' in category_info:
                 kw['summary'] = category_info['summary']
+        else:
+            print "WARNING: %s not in categories.yaml." % category
 
         content = template.render(**kw)
 
