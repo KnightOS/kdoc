@@ -53,6 +53,7 @@ categories:
     Maths:
         stub: Common mathematical utility functions
     Miscellaneous:
+        stub: Various helpful functions that fit nowhere else
     System:
         stub: Interaction with basic system functionality
     Text:
