@@ -54,6 +54,8 @@ categories:
         stub: Common mathematical utility functions
     Miscellaneous:
         stub: Various helpful functions that fit nowhere else
+    Strings:
+        stub: Useful routines to work with strings
     System:
         stub: Interaction with basic system functionality
     Text:
