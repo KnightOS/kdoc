@@ -18,7 +18,7 @@ categories:
             which mode you'd like to use, and the kernel will handle the switching semantics to help you coorperate with the rest
             of the enviornment.
     Concurrency:
-        stub: Implementations of concurrency patterns
+        stub: Implementations of concurrent patterns
     Cryptography:
         stub: Cryptographic hashing functions
         summary: 
