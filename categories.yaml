@@ -17,6 +17,8 @@ categories:
             We refer to monochrome mode as "legacy mode", and color mode as "color mode". Your program should tell the kernel
             which mode you'd like to use, and the kernel will handle the switching semantics to help you coorperate with the rest
             of the enviornment.
+    Concurrency:
+        stub: Implementations of concurrency patterns
     Cryptography:
         stub: Cryptographic hashing functions
         summary: 
@@ -35,7 +37,10 @@ categories:
         stub: File stream manipulation
         summary: 
             File streams allow you to read from or write to files on the filesystem. It operates at a higher level than the
-            [filesystem driver](/documentation/reference/filesystem.html) does.
+            [filesystem driver](/documentation/reference/filesystem.html) does. Note that certain filesystem operations on
+            KnightOS are much slower than others. You should probably display some sort of "waiting" UI to users while you
+            do expensive operations. Writing files sequentially is pretty fast, but editing the middle of a file can be
+            quite slow as Flash erasures are often required to complete these writes.
     Filesystem:
         stub: Low-level filesystem driver
         summary: 
