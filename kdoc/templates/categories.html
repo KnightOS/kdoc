@@ -13,7 +13,7 @@ browse through them with the categories below.
 <table class="table">
 {% for name, data in categories %}
     <tr>
-        <th><a href="/documentation/reference/{{name | lower}}.html">{{name}}</a></th>
+        <th><a href="/documentation/reference/{{name | file}}">{{name}}</a></th>
         {% if data and 'stub' in data %}
         <td>{{ data['stub'] }}</td>
         {% endif %}

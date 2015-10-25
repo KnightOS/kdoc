@@ -14,7 +14,7 @@ from functools import partial
 p = Processor()
 link_re = re.compile('\[\[\w+\]\]')
 
-category_filename = lambda category: category.lower().replace(" ", "_") + ".html"
+category_filename = lambda category: category.lower().replace(" ", "_").replace("/", "_") + ".html"
 
 def safe_markdown(text):
     return Markup(markdown(text))
@@ -46,6 +46,7 @@ env = Environment(loader=PackageLoader("kdoc", "templates"))
 env.filters['markdown'] = safe_markdown
 env.filters['links'] = safe_links
 env.filters['json'] = json.dumps
+env.filters['file'] = category_filename
 
 env.globals['kos_github_link'] = kos_github_link
 

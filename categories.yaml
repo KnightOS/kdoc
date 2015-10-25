@@ -55,6 +55,8 @@ categories:
         stub: Concurrent hardware management
     Input:
         stub: Keyboard driver
+    I/O:
+        stub: Link routines
     Maths:
         stub: Common mathematical utility functions
     Miscellaneous:
