@@ -29,7 +29,7 @@ categories:
         stub: Monochrome graphics and display driver
         summary: 
             The monochrome display is 96x64 pixels. KnightOS programs are expected to allocate a 768-byte buffer of memory, and
-            place the address in IY [[allocScreenBuffer]] does this for you). You may use [fastCopy](#fastCopy)
+            place the address in IY ([[allocScreenBuffer]] does this for you). You may use [fastCopy](#fastCopy)
             to copy this buffer to the display.
 
             This page documents monochrome functions. For the color display, see [color](/documentation/reference/color).
