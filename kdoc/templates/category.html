@@ -49,7 +49,7 @@ layout: documentation
             {% for c in categories %}
             {% if c[0] == name %}
             <li class="active">
-                <a href="/documentation/reference/{{ c[0] | lower }}.html" class="text-bold">{{ c[0] }}</a>
+                <a href="/documentation/reference/{{ c[0] | file }}" class="text-bold">{{ c[0] }}</a>
                 <ul class="nav doc-nav">
                     {% for item in items %}
                     <li>
