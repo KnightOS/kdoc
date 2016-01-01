@@ -59,7 +59,7 @@ layout: documentation
                 </ul>
             </li>
             {% else %}
-            <li><a href="/documentation/reference/{{ c[0] | lower }}.html">{{ c[0] }}</a></li>
+            <li><a href="/documentation/reference/{{ c[0] | file }}">{{ c[0] }}</a></li>
             {% endif %}
             </li>
             {% endfor %}
